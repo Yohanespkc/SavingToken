@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SavingToken AI - LLM-Connector & Sovereign Telkomsel Gateway</title>
+  <meta name="description" content="Aplikasi penghemat energi dan token AI dengan In-House Native LLM-Connector, Mesin Open Source Telkomsel (DeepSeek, GLM), Gemini 3.8 NanoBanana Multimodal, dan Billing Telkomsel terintegrasi.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/hud.css">
+  <link rel="stylesheet" href="/styles/chat.css">
+  <link rel="stylesheet" href="/styles/modals.css">
+</head>
+<body>
+  <!-- Ambient Atmospheric Glow -->
+  <div class="bg-ambient-layer"></div>
+
+  <div id="app">
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="brand-section">
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+            <path d="M50 15 L70 45 L54 45 L58 85 L30 52 L46 52 Z" fill="url(#brandGrad)"/>
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#E30613"/>
+                <stop offset="50%" stop-color="#FF5722"/>
+                <stop offset="100%" stop-color="#00D084"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-title-group">
+          <h1>
+            <span class="brand-gradient">SavingToken</span>
+            <span class="telkomsel-tag">Telkomsel AI</span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- Center: 2 Core Mode Buttons -->
+      <div class="dual-mode-nav-switcher" id="dualModeSwitcher">
+        <!-- Button 1: LLM Lokal Mesin Telkomsel -->
+        <button id="btnNavTelkomsel" class="mode-nav-btn active mode-telkomsel-active" title="Gunakan LLM Lokal di Cluster GPU Telkomsel (Token Dihitung Real-time)">
+          <div class="mode-nav-icon">🌐</div>
+          <div class="mode-nav-content">
+            <span class="mode-nav-title">1. LLM Lokal Mesin Telkomsel</span>
+            <span class="mode-nav-sub">Hitung Token Real-Time • Sovereign GPU</span>
+          </div>
+          <span class="mode-chip-badge chip-tsel">🟢 Telkomsel GPU</span>
+        </button>
+
+        <!-- Button 2: LLM-Connector (Multi-LLM) -->
+        <button id="btnNavOmniRouter" class="mode-nav-btn" title="Gunakan LLM-Connector untuk menghubungkan ke berbagai LLM berbayar dengan In-House Saving Energy & Cost">
+          <div class="mode-nav-icon">⚡</div>
+          <div class="mode-nav-content">
+            <span class="mode-nav-title">2. LLM-Connector (Multi-LLM)</span>
+            <span class="mode-nav-sub">Gemini 3.8 / GPT-6 • In-House Saver</span>
+          </div>
+          <span class="mode-chip-badge chip-omni">🍃 LLM-Connector</span>
+        </button>
+
+        <!-- Optional Sub-Model Selector Trigger -->
+        <button id="openModelPickerBtn" class="submodel-picker-btn" title="Pilih Varian Model AI">
+          <span id="activeModelShortName">DeepSeek-R1</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Right Controls: Telkomsel Quota Chip, Savings Pill, Analytics, Settings -->
+      <div class="nav-right-group">
+        <!-- Telkomsel Quota & Pulsa Chip -->
+        <div id="openBillingBtn" class="quota-chip" title="Kelola Saldo Pulsa & Kuota Token Telkomsel">
+          <div class="quota-item">
+            <span class="quota-label">Pulsa T-Sel</span>
+            <span class="quota-value" id="navPulsaDisplay">Rp 175.000</span>
+          </div>
+          <div class="quota-divider"></div>
+          <div class="quota-item">
+            <span class="quota-label">Kuota Token</span>
+            <span class="quota-value token-accent" id="navQuotaDisplay">4.85M</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--saver-green)" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+
+        <!-- Token Savings Quick Pill -->
+        <button id="openAnalyticsBtn" class="savings-pill" title="Lihat Statistik Penghematan Token LLM-Connector">
+          <span>⚡</span>
+          <span id="navSavingsText">Hemat ~68% Token</span>
+        </button>
+
+        <!-- Settings Modal Trigger -->
+        <button id="openSettingsBtn" class="btn btn-glass btn-icon" title="Pengaturan Server Telkomsel & API Key">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Chat Work Area -->
+    <main class="chat-container">
+      <!-- Sticky Interactive Mode HUD Strip -->
+      <div class="mode-hud-strip mode-telkomsel-strip" id="modeHudStrip">
+        <div class="hud-strip-left">
+          <span class="hud-live-tag tag-telkomsel" id="hudModeTag">🌐 1. LLM LOKAL TELKOMSEL</span>
+          <span class="hud-strip-title" id="hudModeTitle">Terkoneksi ke Cluster GPU Telkomsel (vLLM / Ollama Internal)</span>
+        </div>
+        <div class="hud-strip-right" id="hudStripMetrics">
+          <div class="hud-meter-box" id="hudMeterTokenBox">
+            <span class="hud-meter-label">Sisa Kuota:</span>
+            <span class="hud-meter-value green" id="hudRemainingQuota">4.85M Token</span>
+          </div>
+          <div class="hud-meter-box" id="hudMeterLastUsageBox">
+            <span class="hud-meter-label">Token Terhitung:</span>
+            <span class="hud-meter-value" id="hudLastTokenCount">0 In / 0 Out</span>
+          </div>
+          <div class="hud-meter-box" id="hudMeterEnergyBox" style="display: none;">
+            <span class="hud-meter-label">Saving Energy:</span>
+            <span class="hud-meter-value green" id="hudEnergyEfficiency">-45% GPU Load</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="messages-scrollable" id="messagesScrollable">
+        <div class="messages-list" id="messagesList">
+          <!-- Welcome Hero Screen (visible when chat is empty) -->
+          <div class="welcome-hero" id="welcomeHero">
+            <div class="welcome-badge">
+              <span>🇮🇩 Kedaulatan AI Telkomsel</span>
+              <span>•</span>
+              <span style="color: #00D084;">⚡ LLM-Connector Green AI Gateway</span>
+            </div>
+            <h2>
+              Pilih Jalur Komputasi AI: <span class="hero-highlight">2 Tombol Utama</span>
+            </h2>
+            <p>
+              Gunakan <b>LLM Lokal Mesin Telkomsel</b> untuk kedaulatan data dan perhitungan token transparan, atau <b>LLM-Connector (Multi-LLM)</b> untuk menghemat energi & biaya saat memanggil AI komersial tier-1.
+            </p>
+
+            <!-- 2 Core Feature Hero Cards -->
+            <div class="dual-hero-grid">
+              <!-- Card 1: LLM Lokal Mesin Telkomsel -->
+              <div class="dual-hero-card card-telkomsel" id="heroCardTelkomsel">
+                <div>
+                  <div class="hero-card-header">
+                    <div class="hero-card-icon">🌐</div>
+                    <span class="quick-card-badge badge-red">TOMBOL 1 • SOVEREIGN GPU</span>
+                  </div>
+                  <div class="hero-card-title">LLM Lokal Mesin Telkomsel</div>
+                  <div class="hero-card-subtitle">Cluster Internal • Kedaulatan Data • Token Dihitung</div>
+                  <div class="hero-card-desc">
+                    Terhubung langsung ke GPU cluster internal Telkomsel. Data Anda 100% berdaulat di Indonesia dan pemakaian token dihitung secara transparan.
+                  </div>
+                  <div class="hero-card-features">
+                    <div class="hero-feature-row">
+                      <span>📊</span>
+                      <span><b>Hitung Token Real-Time:</b> Input & output token dipotong dari Kuota Token Flat Telkomsel.</span>
+                    </div>
+                    <div class="hero-feature-row">
+                      <span>🧠</span>
+                      <span><b>Model Sovereign:</b> DeepSeek-R1 (Penalaran matematika) & GLM-4 (Spesialis koding).</span>
+                    </div>
+                    <div class="hero-feature-row">
+                      <span>🛡️</span>
+                      <span><b>Zero-Cloud Latency:</b> Privasi lokal, tanpa pengiriman data ke server asing.</span>
+                    </div>
+                  </div>
+                </div>
+                <button class="hero-card-action-btn" id="heroBtnTelkomsel">
+                  <span>🌐 Aktifkan LLM Mesin Telkomsel</span>
+                  <span>➔</span>
+                </button>
+              </div>
+
+              <!-- Card 2: LLM-Connector Multi-LLM -->
+              <div class="dual-hero-card card-omni" id="heroCardOmni">
+                <div>
+                  <div class="hero-card-header">
+                    <div class="hero-card-icon">⚡</div>
+                    <span class="quick-card-badge badge-green">TOMBOL 2 • LLM-CONNECTOR</span>
+                  </div>
+                  <div class="hero-card-title">LLM-Connector (Multi-LLM)</div>
+                  <div class="hero-card-subtitle">Gemini 3.8 / GPT-6 • In-House Saving Energy & Cost</div>
+                  <div class="hero-card-desc">
+                    Gerbang cerdas buatan sendiri (100% in-house) yang menghubungkan ke berbagai LLM berbayar dengan proteksi pemborosan energi dan biaya komputasi GPU cloud.
+                  </div>
+                  <div class="hero-card-features">
+                    <div class="hero-feature-row">
+                      <span>🍃</span>
+                      <span><b>Saving Energy:</b> Kompresi prompt (-45%) mengurangi konsumsi watt datacenter GPU cloud.</span>
+                    </div>
+                    <div class="hero-feature-row">
+                      <span>⚡</span>
+                      <span><b>Semantic Cache:</b> Kueri serupa dijawab instan dengan <b>0 Watt</b> & 0 Rupiah.</span>
+                    </div>
+                    <div class="hero-feature-row">
+                      <span>🍌</span>
+                      <span><b>Multi-LLM Tier-1:</b> Gemini 3.8 Flash, NanoBanana Studio (bikin visual), & GPT-6.</span>
+                    </div>
+                  </div>
+                </div>
+                <button class="hero-card-action-btn" id="heroBtnOmni">
+                  <span>⚡ Aktifkan LLM-Connector</span>
+                  <span>➔</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4 Quick Starter Cards -->
+            <div class="quick-cards-grid">
+              <div class="quick-card" data-prompt="Jelaskan pembuktian matematika algoritma token pruning dan bagaimana semantic caching menghemat komputasi LLM hingga 70%" data-mode="telkomsel" data-model="deepseek-r1-telkomsel">
+                <div class="quick-card-title">
+                  <span>🧠 DeepSeek-R1 Sovereign</span>
+                  <span class="quick-card-badge badge-green">Mesin Telkomsel</span>
+                </div>
+                <div class="quick-card-desc">
+                  Penalaran mendalam langkah-demi-langkah (deep reasoning) dengan streaming pikiran dan hitungan token.
+                </div>
+              </div>
+
+              <div class="quick-card" data-prompt="/imagine Cyberpunk Jakarta 2050 dengan menara Telkomsel hologram bercahaya neon cinematic high-res" data-mode="omni" data-model="gemini-3.8-nanobanana">
+                <div class="quick-card-title">
+                  <span>🍌 Gemini NanoBanana</span>
+                  <span class="quick-card-badge badge-purple">LLM-Connector Studio</span>
+                </div>
+                <div class="quick-card-desc">
+                  Generasi visual kreatif resolusi tinggi via gerbang multimodal komersial.
+                </div>
+              </div>
+
+              <div class="quick-card" data-prompt="Halo bot tolong buatkan implementasi function middleware Node.js untuk mendeteksi semantic similarity prompt terima kasih banyak" data-mode="omni" data-model="auto">
+                <div class="quick-card-title">
+                  <span>✂️ Uji Saving Energy Pruning</span>
+                  <span class="quick-card-badge badge-blue">Green AI Saver</span>
+                </div>
+                <div class="quick-card-desc">
+                  Uji kompresi prompt mubazir secara otomatis. Pangkas 40-60% beban energi server cloud!
+                </div>
+              </div>
+
+              <div class="quick-card" data-prompt="Buatkan arsitektur sistem microservice untuk integrasi pembayaran Telkomsel Carrier Billing dengan vLLM" data-mode="telkomsel" data-model="glm-4-telkomsel">
+                <div class="quick-card-title">
+                  <span>💻 GLM-4 Coding Specialist</span>
+                  <span class="quick-card-badge badge-red">Mesin Telkomsel</span>
+                </div>
+                <div class="quick-card-desc">
+                  Model bilingual spesialis arsitektur pemrograman dan skrip teknis di server internal.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Bottom Input Dock -->
+      <div class="input-dock-wrapper">
+        <div class="dock-container">
+          <!-- Active Attachment Preview -->
+          <div class="attachment-preview-bar" id="attachmentPreviewBar">
+            <img id="attachmentPreviewImg" class="attachment-img-thumb" src="" alt="preview">
+            <span id="attachmentFileName" style="color: #94A3B8; font-size: 0.8rem;">file.jpg</span>
+            <button class="remove-attachment-btn" id="removeAttachmentBtn" title="Hapus lampiran">✕</button>
+          </div>
+
+          <!-- Textarea Input Row -->
+          <div class="input-row">
+            <textarea
+              id="userPromptInput"
+              rows="1"
+              placeholder="Tulis instruksi atau prompt Anda di sini... (Ketik /imagine untuk membuat gambar)"
+            ></textarea>
+            <button class="send-btn" id="sendPromptBtn" title="Kirim Prompt">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Bottom Tools Row -->
+          <div class="dock-actions-row">
+            <div class="dock-left-tools">
+              <!-- NanoBanana Image Gen Mode -->
+              <button class="tool-chip" id="toggleNanoBananaBtn" title="Aktifkan mode pembuatan gambar Gemini NanoBanana">
+                <span>🍌</span>
+                <span>NanoBanana Studio</span>
+              </button>
+
+              <!-- Media Attachment Button -->
+              <button class="tool-chip" id="attachMediaBtn" title="Unggah Gambar atau Dokumen untuk Analisis Multimodal">
+                <span>📎</span>
+                <span>Lampirkan Media</span>
+              </button>
+              <input type="file" id="mediaFileInput" accept="image/*,video/*,.pdf" style="display: none;">
+
+              <!-- Token Pruning Toggle -->
+              <button class="tool-chip active" id="togglePruningBtn" title="Klik untuk mengaktifkan/menonaktifkan pemangkas token">
+                <span>✂️</span>
+                <span id="pruningStatusText">Pruning: ON (-45%)</span>
+              </button>
+            </div>
+
+            <div class="dock-right-tools">
+              <span style="font-size: 0.72rem; color: #64748B;">
+                Shift + Enter untuk baris baru
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-hint-text">
+          Didukung oleh SavingToken LLM-Connector (100% In-House Engine) • Integrasi Resmi GPU Sovereign Telkomsel & Commercial LLM
+        </div>
+      </div>
+    </main>
+
+    <!-- 1. MODEL SELECTOR MODAL -->
+    <div class="modal-backdrop" id="modelPickerModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--saver-green)" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <h3>Pilih Model AI atau Mode Routing</h3>
+          </div>
+          <button class="modal-close-btn" data-close="modelPickerModal">✕</button>
+        </div>
+        <div class="modal-body" id="modelsModalList">
+          <!-- Dynamically populated from /api/status -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TELKOMSEL BILLING & QUOTA MANAGER MODAL -->
+    <div class="modal-backdrop" id="billingModal">
+      <div class="modal-card" style="max-width: 740px;">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--tsel-red)" stroke-width="2">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+            <h3>Manajemen Billing & Kuota Telkomsel</h3>
+          </div>
+          <button class="modal-close-btn" data-close="billingModal">✕</button>
+        </div>
+        <div class="modal-body">
+          <!-- Account Hero Card -->
+          <div class="billing-account-hero">
+            <div class="account-meta-row">
+              <div class="account-msisdn-badge">
+                <span style="color: #FF5763; font-size: 1.1rem;">📱</span>
+                <span id="billingMsisdn">+62 812-9876-5432</span>
+                <span class="account-plan-badge" id="billingPlanName">Enterprise AI Prime</span>
+              </div>
+              <div>
+                <button class="btn btn-primary" id="quickTopupPulsaBtn" style="padding: 4px 12px; font-size: 0.75rem;">+ Top Up Pulsa Rp 50.000</button>
+              </div>
+            </div>
+
+            <div class="billing-stats-grid">
+              <div class="billing-stat-box">
+                <span class="stat-box-label">Saldo Pulsa Telkomsel</span>
+                <span class="stat-box-value" id="billingPulsaVal">Rp 175.000</span>
+              </div>
+              <div class="billing-stat-box">
+                <span class="stat-box-label">Sisa Kuota Token Mesin</span>
+                <span class="stat-box-value green" id="billingQuotaVal">4,850,000</span>
+              </div>
+              <div class="billing-stat-box">
+                <span class="stat-box-label">Total Uang Dihemat</span>
+                <span class="stat-box-value green" id="billingSavedVal">Rp 48.700</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Packages Grid -->
+          <div class="packages-section-title">
+            <span>Beli Paket Kuota Token AI Telkomsel</span>
+            <span style="font-size: 0.75rem; color: #94A3B8;">Potong Pulsa atau Tagihan Halo</span>
+          </div>
+          <div class="package-cards-list" id="packageCardsList">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Transaction History -->
+          <div class="packages-section-title" style="margin-top: 10px;">
+            <span>Riwayat Penggunaan Token & Billing Terbaru</span>
+          </div>
+          <div style="max-height: 200px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+            <table class="transaction-history-table">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>Model</th>
+                  <th>Token</th>
+                  <th>Biaya (IDR)</th>
+                  <th>Metode</th>
+                  <th>Hemat</th>
+                </tr>
+              </thead>
+              <tbody id="transactionTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. ANALYTICS & TOKEN SAVING DRAWER -->
+    <div class="analytics-drawer" id="analyticsDrawer">
+      <div class="drawer-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.2rem;">⚡</span>
+          <h3 style="font-size: 1.1rem; font-weight: 700;">LLM-Connector Analytics</h3>
+        </div>
+        <button class="modal-close-btn" id="closeAnalyticsBtn">✕</button>
+      </div>
+      <div class="drawer-body">
+        <div class="billing-stat-box">
+          <span class="stat-box-label">Efisiensi Token Terkompresi</span>
+          <span class="stat-box-value green" id="analyticsTokensPrunedVal">0 Token</span>
+          <span class="settings-hint">Disaring dari kata-kata mubazir prompt</span>
+        </div>
+
+        <div class="billing-stat-box">
+          <span class="stat-box-label">Semantic Cache Hits</span>
+          <span class="stat-box-value green" id="analyticsCacheHitsVal">0 Kali (Gratis)</span>
+          <span class="settings-hint">Menjawab instan tanpa konsumsi token baru</span>
+        </div>
+
+        <div class="billing-stat-box">
+          <span class="stat-box-label">Total Penghematan Biaya</span>
+          <span class="stat-box-value green" id="analyticsTotalMoneySavedVal">Rp 48.700</span>
+          <span class="settings-hint">Dibandingkan memanggil API Komersial tanpa router</span>
+        </div>
+
+        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+          <button class="btn btn-glass" id="clearCacheBtn" style="font-size: 0.8rem; width: 100%;">
+            🧹 Bersihkan Semantic Cache
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. SETTINGS MODAL -->
+    <div class="modal-backdrop" id="settingsModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <h3>Konfigurasi Server Telkomsel & API Key</h3>
+          </div>
+          <button class="modal-close-btn" data-close="settingsModal">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="settings-form-group">
+            <label class="settings-label">
+              <span>Endpoint GPU Cluster Mesin Telkomsel (vLLM / Ollama)</span>
+              <span id="telkomselClusterStatusBadge" style="font-size: 0.72rem; color: #94A3B8;">Mode Hybrid (Simulator Aktif)</span>
+            </label>
+            <input type="text" id="settingTelkomselUrl" class="settings-input" placeholder="http://127.0.0.1:8000/v1" value="http://127.0.0.1:8000/v1">
+            <span class="settings-hint">URL server inference vLLM/Ollama OpenAI-compatible di jaringan internal Telkomsel</span>
+          </div>
+
+          <div class="settings-form-group">
+            <label class="settings-label">
+              <span>Google Gemini API Key (Gemini 3.8 & NanoBanana)</span>
+              <span id="geminiStatusBadge" style="font-size: 0.72rem; color: #00D084;">Siap Pakai</span>
+            </label>
+            <input type="password" id="settingGeminiApiKey" class="settings-input" placeholder="AIzaSy...">
+            <span class="settings-hint">Masukkan API Key Gemini untuk aktivasi langsung live multimodal & Imagen</span>
+          </div>
+
+          <div class="settings-form-group">
+            <label class="settings-label">
+              <span>Strategi Optimasi LLM-Connector</span>
+            </label>
+            <select id="settingRoutingStrategy" class="settings-input" style="cursor: pointer;">
+              <option value="cost_first">Hemat Biaya Maksimal (Prioritaskan Mesin Telkomsel OSS)</option>
+              <option value="balanced">Seimbang (Auto-Route berdasarkan kompleksitas kueri)</option>
+              <option value="speed_first">Kecepatan Maksimal (Prioritaskan model latensi terendah)</option>
+              <option value="quality_first">Kualitas Maksimal (Prioritaskan Gemini Pro & DeepSeek-R1)</option>
+            </select>
+          </div>
+
+          <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+            <button class="btn btn-primary" id="saveSettingsBtn">Simpan Pengaturan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript App -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

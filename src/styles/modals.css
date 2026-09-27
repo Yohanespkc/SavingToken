@@ -1,0 +1,371 @@
+/* modals.css - Billing Manager, Model Picker, Analytics Drawer, and Settings */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 14, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 680px;
+  background: #0E1626;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 85vh;
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.open .modal-card {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-title-wrap h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Telkomsel Billing Balance Cards */
+.billing-account-hero {
+  background: linear-gradient(135deg, rgba(227, 6, 19, 0.15) 0%, rgba(14, 22, 38, 0.9) 60%, rgba(0, 208, 132, 0.1) 100%);
+  border: 1px solid rgba(227, 6, 19, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.account-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-msisdn-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #F8FAFC;
+}
+
+.account-plan-badge {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(227, 6, 19, 0.2);
+  color: #FF5C69;
+  border: 1px solid rgba(227, 6, 19, 0.4);
+  font-weight: 700;
+}
+
+.billing-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.billing-stat-box {
+  background: rgba(7, 11, 20, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-box-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.stat-box-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+}
+
+.stat-box-value.green { color: var(--saver-green); }
+.stat-box-value.red { color: #FF4D5B; }
+
+/* Package Purchase Grid */
+.packages-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.package-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.package-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.package-item-card:hover {
+  border-color: rgba(0, 208, 132, 0.4);
+  background: rgba(20, 31, 51, 0.85);
+}
+
+.package-left-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.package-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.package-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.package-price-wrap {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.package-price {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--saver-green);
+  font-family: var(--font-mono);
+}
+
+/* Transaction Ledger Table */
+.transaction-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.76rem;
+}
+
+.transaction-history-table th {
+  text-align: left;
+  padding: 8px 10px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.transaction-history-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+}
+
+.transaction-history-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Model Selector Modal */
+.models-list-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.model-option-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.model-option-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.model-option-card.selected {
+  border-color: var(--saver-green);
+  background: rgba(0, 208, 132, 0.08);
+}
+
+.model-option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.model-option-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.model-option-desc {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+/* Analytics Drawer */
+.analytics-drawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  height: 100vh;
+  background: #0D1424;
+  border-left: 1px solid var(--border-subtle);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
+  z-index: 90;
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.analytics-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.drawer-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Settings Form */
+.settings-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-input {
+  background: rgba(7, 11, 20, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.settings-input:focus {
+  border-color: var(--saver-green);
+}
+
+.settings-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
