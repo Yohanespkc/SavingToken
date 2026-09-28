@@ -1,8 +1,17 @@
-# Changelog
+# 📜 Catatan Perubahan (Changelog) SavingToken
 
-Semua perubahan penting pada proyek **SavingToken LLM-Connector AI** akan dicatat dalam berkas ini.
+Semua perubahan penting pada proyek **SavingToken LLM-Connector AI** dicatat dalam direktori ini.
 
 Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/1.0.0/) dan mematuhi [Semantic Versioning](https://semver.org/lang/id/).
+
+---
+
+## 📑 Riwayat Versi
+
+| Versi | Tanggal Rilis | Ringkasan | Berkas Rilis |
+| :--- | :--- | :--- | :--- |
+| **[v1.1.0](#110---2026-09-28)** | 28 September 2026 | Struktur Dokumentasi Multilingual & Changelog | [v1.1.0.md](v1.1.0.md) |
+| **[v1.0.0](#100---2026-09-27)** | 27 September 2026 | Rilis Perdana — Native LLM-Connector & Billing Telkomsel | [v1.0.0.md](v1.0.0.md) |
 
 ---
 
@@ -11,17 +20,17 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 ### Added
 - **Struktur Dokumentasi Multilingual (`docs/`)**:
   - Implementasi struktur direktori dokumentasi internasional di bawah `docs/`.
-  - Berkas [`docs/en/README.md`](docs/en/README.md) yang menyajikan terjemahan bahasa Inggris lengkap untuk arsitektur sistem, UI dual-mode, mesin optimasi token in-house, katalog model, dan spesifikasi API.
-  - Berkas [`docs/id/README.md`](docs/id/README.md) yang mengorganisasikan dokumentasi bahasa Indonesia kanonikal dengan path relatif yang rapi.
-  - Berkas [`docs/README.md`](docs/README.md) sebagai portal navigasi dokumentasi lintas bahasa.
+  - Berkas [`docs/en/README.md`](../en/README.md) yang menyajikan terjemahan bahasa Inggris lengkap untuk arsitektur sistem, UI dual-mode, mesin optimasi token in-house, katalog model, dan spesifikasi API.
+  - Berkas [`docs/id/README.md`](../id/README.md) yang mengorganisasikan dokumentasi bahasa Indonesia kanonikal dengan path relatif yang rapi.
+  - Berkas [`docs/README.md`](../README.md) sebagai portal navigasi dokumentasi lintas bahasa.
 - **Direktori Khusus Changelog (`docs/changelog/`)**:
-  - Membangun direktori [`docs/changelog/`](docs/changelog/) untuk arsip riwayat versi dan catatan rilis komprehensif.
-  - Catatan rilis mendalam untuk [`docs/changelog/v1.0.0.md`](docs/changelog/v1.0.0.md) dan [`docs/changelog/v1.1.0.md`](docs/changelog/v1.1.0.md).
+  - Membangun direktori `docs/changelog/` untuk arsip riwayat versi dan catatan rilis komprehensif.
+  - Catatan rilis mendalam untuk [`v1.0.0.md`](v1.0.0.md) dan [`v1.1.0.md`](v1.1.0.md).
 - **Navigasi Bahasa Global**:
   - Penambahan tautan pemilihan bahasa (`[English] | [Bahasa Indonesia]`) pada README utama dan sub-dokumentasi.
 
 ### Changed
-- Pembaruan diagram pohon direktori proyek pada [`README.md`](README.md) untuk mencerminkan struktur `docs/` dan `docs/changelog/`.
+- Pembaruan diagram pohon direktori proyek pada [`README.md`](../../README.md) untuk mencerminkan struktur `docs/` dan `docs/changelog/`.
 - Perbaikan tautan path absolut lokal menjadi path repositori relatif yang portabel.
 
 ---
@@ -29,7 +38,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 ## [1.0.0] - 2026-09-27
 
 ### Added
-- **In-House Native LLM-Connector Engine (`llmConnector.js`)**:
+- **In-House Native LLM-Connector Engine (`server/router/llmConnector.js`)**:
   - Mesin gateway multi-LLM mandiri yang dibangun 100% *in-house* tanpa ketergantungan pada proxy SaaS pihak ketiga.
   - **Semantic Caching**: Deteksi kueri berulang secara cerdas untuk respon instan (0 token, 0 biaya, 0 watt energi, latensi < 40ms).
   - **Token Pruning & Compressor**: Pembersihan kata-kata basa-basi, salam berulang, dan normalisasi spasi tanpa mengubah konteks semantik prompt (menghemat 30% hingga 65% token input).
@@ -40,7 +49,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 - **Katalog Model Terpadu**:
   - *Sovereign Telkomsel GPU Cluster*: DeepSeek-R1 (dengan streaming blok `<think>` penalaran mendalam interaktif), DeepSeek-V3, GLM-4 / GLM-Edge, dan Qwen 2.5 72B.
   - *Commercial APIs*: Google Gemini 3.8 Flash (Multimodal), Gemini 3.8 NanoBanana Studio (Image Generator via prompt `/imagine`), Gemini 3.8 Pro Video, dan GPT-6.0 Omni Preview.
-- **Sistem Billing Telkomsel Terintegrasi (`billingService.js`)**:
+- **Sistem Billing Telkomsel Terintegrasi (`server/router/billingService.js`)**:
   - Dukungan pemotongan ganda: Saldo Pulsa Telkomsel (untuk model komersial) dan Kuota Token Telkomsel (untuk kluster lokal).
   - Paket kuota AI prabayar: Paket Mahasiswa (1 Juta Token), Developer Pro (10 Juta Token), dan Enterprise Sovereign (50 Juta Token).
   - Buku kas audit transaksi real-time (*Ledger*) dengan catatan model, jumlah token input/output, token yang dihemat, dan penghematan Rupiah.
@@ -48,7 +57,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
   - Live HUD pill di setiap pesan asisten yang memperlihatkan statistik pemangkasan token, latensi, dan estimasi biaya.
   - Modal Analytics untuk memantau akumulasi token terpangkas, watt-hour energi yang dihemat, dan rasio cache hit.
   - Modal Pengaturan untuk mengubah endpoint Telkomsel GPU dan API Key komersial secara *live* tanpa restart server.
-- **High-Fidelity Hybrid Simulation Streamer (`mockStreamer.js`)**:
+- **High-Fidelity Hybrid Simulation Streamer (`server/mock/mockStreamer.js`)**:
   - Menjamin aplikasi tetap responsif dan dapat didemokan secara penuh sekalipun server kluster internal atau koneksi internet sedang offline.
 - **Infrastruktur Repository & Keamanan**:
   - Konfigurasi `.gitignore` untuk melindungi berkas `.env`, direktori `node_modules/`, dan artefak build lokal.

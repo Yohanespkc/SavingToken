@@ -1,7 +1,7 @@
 # ⚡ SavingToken LLM-Connector AI Gateway
 > **Platform In-House Optimalisasi Token & Biaya LLM berbasis Sovereign Telkomsel GPU Cluster & Commercial Cloud (Gemini 3.8 / GPT-6)**
 
-[English](docs/en/README.md) | [Bahasa Indonesia](README.md)
+[English](../en/README.md) | [Bahasa Indonesia](README.md)
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Yohanespkc%2FSavingToken-blue?logo=github)](https://github.com/Yohanespkc/SavingToken)
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B%20%7C%20v20%2B-green?logo=node.js)](https://nodejs.org/)
@@ -295,7 +295,7 @@ Endpoint utama untuk obrolan streaming dengan dukungan Server-Sent Events (SSE).
 
 ## 📜 Changelog
 
-Detail setiap perubahan versi dicatat secara lengkap pada berkas [CHANGELOG.md](CHANGELOG.md).
+Detail setiap perubahan versi dicatat secara lengkap pada berkas [CHANGELOG.md](../../CHANGELOG.md).
 
 ---
 
