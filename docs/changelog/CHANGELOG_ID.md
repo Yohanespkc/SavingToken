@@ -10,12 +10,12 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 | Versi | Tanggal Rilis | Ringkasan | Berkas Rilis |
 | :--- | :--- | :--- | :--- |
-| **[v1.1.0](#110---2026-09-28)** | 28 September 2026 | Struktur Dokumentasi Multilingual & Changelog | [v1.1.0.md](v1.1.0.md) |
-| **[v1.0.0](#100---2026-09-27)** | 27 September 2026 | Rilis Perdana — Native LLM-Connector & Billing Telkomsel | [v1.0.0.md](v1.0.0.md) |
+| **[v0.0.1](#001---2026-09-28)** | 28 September 2026 | Struktur Dokumentasi Multilingual & Changelog | [v0.0.1.md](v0.0.1.md) |
+| **[v0.0.0](#000---2026-09-27)** | 27 September 2026 | Rilis Perdana — Native LLM-Connector & Billing Telkomsel | [v0.0.0.md](v0.0.0.md) |
 
 ---
 
-## [1.1.0] - 2026-09-28
+## [0.0.1] - 2026-09-28
 
 ### Added
 - **Struktur Dokumentasi Multilingual (`docs/`)**:
@@ -25,7 +25,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
   - Berkas [`docs/README.md`](../README.md) sebagai portal navigasi dokumentasi lintas bahasa.
 - **Direktori Khusus Changelog (`docs/changelog/`)**:
   - Membangun direktori `docs/changelog/` untuk arsip riwayat versi dan catatan rilis komprehensif.
-  - Catatan rilis mendalam untuk [`v1.0.0.md`](v1.0.0.md) dan [`v1.1.0.md`](v1.1.0.md).
+  - Catatan rilis mendalam untuk [`v0.0.0.md`](v0.0.0.md) dan [`v0.0.1.md`](v0.0.1.md).
 - **Navigasi Bahasa Global**:
   - Penambahan tautan pemilihan bahasa (`[English] | [Bahasa Indonesia]`) pada README utama dan sub-dokumentasi.
 
@@ -35,7 +35,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
-## [1.0.0] - 2026-09-27
+## [0.0.0] - 2026-09-27
 
 ### Added
 - **In-House Native LLM-Connector Engine (`server/router/llmConnector.js`)**:

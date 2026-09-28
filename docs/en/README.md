@@ -169,7 +169,7 @@ The platform includes an integrated telecom operator billing module:
 SavingToken/
 ├── docs/                            # Multilingual documentation repository
 │   ├── README.md                    # Multilingual documentation index & language hub
-│   ├── changelog/                   # Release logs & version history (v1.0.0, v1.1.0)
+│   ├── changelog/                   # Release logs & version history (v0.0.0, v0.0.1)
 │   ├── en/                          # English documentation
 │   │   └── README.md                # English translation of project documentation
 │   └── id/                          # Indonesian documentation

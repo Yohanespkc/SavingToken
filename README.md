@@ -169,7 +169,7 @@ Platform dilengkapi modul billing operator terpadu:
 SavingToken/
 ├── docs/                            # Direktori dokumentasi multilingual
 │   ├── README.md                    # Indeks navigasi dokumentasi multilingual
-│   ├── changelog/                   # Catatan rilis & riwayat versi (v1.0.0, v1.1.0)
+│   ├── changelog/                   # Catatan rilis & riwayat versi (v0.0.0, v0.0.1)
 │   ├── en/                          # Dokumentasi bahasa Inggris
 │   │   └── README.md                # English documentation
 │   └── id/                          # Dokumentasi bahasa Indonesia

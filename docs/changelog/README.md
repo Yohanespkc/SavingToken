@@ -10,12 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 | Version | Release Date | Summary | Release Notes |
 | :--- | :--- | :--- | :--- |
-| **[v1.1.0](#110---2026-09-28)** | 2026-09-28 | Multilingual Documentation & Docs Architecture | [v1.1.0.md](v1.1.0.md) |
-| **[v1.0.0](#100---2026-09-27)** | 2026-09-27 | Initial Release — Native LLM-Connector & Telkomsel Billing | [v1.0.0.md](v1.0.0.md) |
+| **[v0.0.1](#001---2026-09-28)** | 2026-09-28 | Multilingual Documentation & Docs Architecture | [v0.0.1.md](v0.0.1.md) |
+| **[v0.0.0](#000---2026-09-27)** | 2026-09-27 | Initial Release — Native LLM-Connector & Telkomsel Billing | [v0.0.0.md](v0.0.0.md) |
 
 ---
 
-## [1.1.0] - 2026-09-28
+## [0.0.1] - 2026-09-28
 
 ### Added
 - **Multilingual Documentation Framework (`docs/`)**:
@@ -25,8 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Added [`docs/README.md`](../README.md) acting as the multilingual navigation hub with quick links across topics and translation guidelines.
 - **Dedicated Changelog Directory (`docs/changelog/`)**:
   - Established `docs/changelog/` containing version ledgers, milestone breakdowns, and release archives.
-  - Added [`v1.0.0.md`](v1.0.0.md) detailing the genesis architecture, in-house pruning algorithms, and Telkomsel sovereign billing.
-  - Added [`v1.1.0.md`](v1.1.0.md) detailing multilingual documentation milestones.
+  - Added [`v0.0.0.md`](v0.0.0.md) detailing the genesis architecture, in-house pruning algorithms, and Telkomsel sovereign billing.
+  - Added [`v0.0.1.md`](v0.0.1.md) detailing multilingual documentation milestones.
   - Added [`CHANGELOG_ID.md`](CHANGELOG_ID.md) preserving bilingual Indonesian changelog records.
 - **Global Language Navigation**:
   - Embedded bidirectional language switcher buttons (`[English] | [Bahasa Indonesia]`) across root and documentation readmes.
@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.0.0] - 2026-09-27
+## [0.0.0] - 2026-09-27
 
 ### Added
 - **Native In-House LLM-Connector Engine (`server/router/llmConnector.js`)**:

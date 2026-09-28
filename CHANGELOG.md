@@ -6,7 +6,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
-## [1.1.0] - 2026-09-28
+## [0.0.1] - 2026-09-28
 
 ### Added
 - **Struktur Dokumentasi Multilingual (`docs/`)**:
@@ -16,7 +16,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
   - Berkas [`docs/README.md`](docs/README.md) sebagai portal navigasi dokumentasi lintas bahasa.
 - **Direktori Khusus Changelog (`docs/changelog/`)**:
   - Membangun direktori [`docs/changelog/`](docs/changelog/) untuk arsip riwayat versi dan catatan rilis komprehensif.
-  - Catatan rilis mendalam untuk [`docs/changelog/v1.0.0.md`](docs/changelog/v1.0.0.md) dan [`docs/changelog/v1.1.0.md`](docs/changelog/v1.1.0.md).
+  - Catatan rilis mendalam untuk [`docs/changelog/v0.0.0.md`](docs/changelog/v0.0.0.md) dan [`docs/changelog/v0.0.1.md`](docs/changelog/v0.0.1.md).
 - **Navigasi Bahasa Global**:
   - Penambahan tautan pemilihan bahasa (`[English] | [Bahasa Indonesia]`) pada README utama dan sub-dokumentasi.
 
@@ -26,7 +26,7 @@ Format berkas ini mengacu pada [Keep a Changelog](https://keepachangelog.com/id/
 
 ---
 
-## [1.0.0] - 2026-09-27
+## [0.0.0] - 2026-09-27
 
 ### Added
 - **In-House Native LLM-Connector Engine (`llmConnector.js`)**:

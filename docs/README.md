@@ -10,8 +10,8 @@ SavingToken supports multilingual documentation to make sovereign AI, smart toke
 
 | Language | Directory | Document Link | Status |
 | :--- | :--- | :--- | :--- |
-| **English** | `docs/en/` | [English Documentation](en/README.md) | ✅ Complete (v1.0.0) |
-| **Bahasa Indonesia** | `docs/id/` | [Dokumentasi Bahasa Indonesia](id/README.md) | ✅ Complete (v1.0.0) |
+| **English** | `docs/en/` | [English Documentation](en/README.md) | ✅ Complete (v0.0.1) |
+| **Bahasa Indonesia** | `docs/id/` | [Dokumentasi Bahasa Indonesia](id/README.md) | ✅ Complete (v0.0.1) |
 
 ---
 
@@ -23,8 +23,8 @@ docs/
 ├── changelog/              # Release logs, version history & changelog archives
 │   ├── README.md           # Consolidated changelog (Keep a Changelog & SemVer)
 │   ├── CHANGELOG_ID.md     # Catatan perubahan versi bahasa Indonesia
-│   ├── v1.0.0.md           # v1.0.0 Genesis Sovereign Engine release notes
-│   └── v1.1.0.md           # v1.1.0 Multilingual Documentation release notes
+│   ├── v0.0.0.md           # v0.0.0 Genesis Sovereign Engine release notes
+│   └── v0.0.1.md           # v0.0.1 Multilingual Documentation release notes
 ├── en/                     # English documentation
 │   └── README.md           # Complete English documentation & architecture guide
 └── id/                     # Indonesian documentation

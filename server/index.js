@@ -33,7 +33,7 @@ app.get('/api/status', async (req, res) => {
   const clusterHealth = await telkomselCluster.checkHealth();
   res.json({
     appName: 'SavingToken LLM-Connector AI',
-    version: '1.0.0',
+    version: '0.0.1',
     mode: runtimeConfig.mode,
     geminiConfigured: commercialProvider.hasGeminiKey(),
     telkomselCluster: {

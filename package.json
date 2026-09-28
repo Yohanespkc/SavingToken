@@ -1,6 +1,6 @@
 {
   "name": "savingtoken-llm-connector",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "SavingToken LLM-Connector AI - Telkomsel Sovereign Open-Source & Commercial LLM Gateway with In-House Smart Token Pruning and Carrier Billing",
   "type": "module",
   "scripts": {
